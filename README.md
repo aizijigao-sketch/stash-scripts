@@ -2,6 +2,8 @@
 
 Private repository for Stash-related scripts and local sync helpers.
 
+See `PROJECT.md` for the project authority file, Stash runtime policy, and editing rules.
+
 ## Files
 
 - `scripts/haijiao-stash.js`: Haijiao Stash script copied from the current desktop version.
@@ -9,13 +11,19 @@ Private repository for Stash-related scripts and local sync helpers.
 
 ## Stash Usage
 
-The existing Stash setup can keep using the local desktop file:
+Canonical managed file:
+
+```text
+F:\AI-Workspace\20_Projects\stash-scripts\scripts\haijiao-stash.js
+```
+
+If the existing Stash setup still points at the desktop path, it can keep using this runtime copy:
 
 ```text
 C:\Users\srguang2\Desktop\haijiao-stash.js
 ```
 
-This repository keeps a private backup and editable source copy. After editing `scripts/haijiao-stash.js`, run:
+After editing `scripts/haijiao-stash.js`, sync the project copy to the desktop runtime copy with:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\sync-to-desktop.ps1
