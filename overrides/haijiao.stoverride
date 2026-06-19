@@ -1,0 +1,19 @@
+name: haijiao
+desc: Auto-generated Stash override for haijiao
+
+http:
+  mitm:
+    - 'haijiao.com'
+    - '*.haijiao.com'
+
+  script:
+    - match: '^https?:\/\/(www\.)?haijiao\.com\/api\/(topic\/\d+|topic\/att\/\d+|user\/current|banner\/banner_list)$'
+      name: haijiao
+      type: response
+      require-body: true
+      timeout: 30
+
+script-providers:
+  haijiao:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/haijiao-stash.js
+    interval: 3600
