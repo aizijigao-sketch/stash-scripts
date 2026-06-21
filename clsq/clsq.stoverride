@@ -50,6 +50,11 @@ http:
       type: request
       require-body: false
       timeout: 30
+    - match: "^https?:\\/\\/[^\\/]+\\.(?:pxgxqfaas\\.cc|pxdnnf\\.cn|bhgmsk\\.cn)\\/(?!(?:[^?#]*\\.(?:png|jpe?g|webp|gif|m3u8|mp4)(?:[?#]|$)))(?:[^?#]*?(?:api|pwa|config|home|mv|discover|list|play)[^?#]*)(?:[\\/?#]|$)"
+      name: "CLSQ.response-body.v2"
+      type: response
+      require-body: true
+      timeout: 30
     - match: "^https?:\\/\\/[^\\/]+\\/(?:api|pwa)\\.php\\/api(?:\\/api)?(?:\\/|$|\\?)"
       name: "CLSQ.response-body.v2"
       type: response
