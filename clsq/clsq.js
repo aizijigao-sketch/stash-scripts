@@ -13,8 +13,9 @@ const headers = req.headers || {};
 const url = req.url || "";
 const hasPlaybackSessionHeader = hasHeader(headers, "X-Playback-Session-Id");
 const isAlreadyLongPlaybackUrl = /^https?:\/\/long\./i.test(url);
+const isOriginalPlaybackUrl = isOriginalPlaybackRequest(url);
 const NOTIFY_CACHE_KEY = "CLSQ_NOTIFY_CACHE_V1";
-const NOTIFY_COOLDOWN_MS = 60 * 1000;
+const NOTIFY_COOLDOWN_MS = 30 * 60 * 1000;
 
 function hasHeader(obj, name) {
   const target = name.toLowerCase();
@@ -30,6 +31,13 @@ function notify(title, subtitle, body, playbackUrl) {
   if (typeof $notify === "function") {
     $notify(title, subtitle, body, options);
   }
+}
+
+function isOriginalPlaybackRequest(rawUrl) {
+  const match = rawUrl.match(/^https?:\/\/([^/]+)\/[^?#]+\.m3u8(?:[?#]|$)/i);
+  if (!match) return false;
+  const host = match[1].toLowerCase();
+  return !host.startsWith("long.");
 }
 
 function readStore(key) {
@@ -85,8 +93,9 @@ console.log("CLSQ request script executed");
 console.log("request url: " + url);
 console.log("has X-Playback-Session-Id: " + hasPlaybackSessionHeader);
 console.log("is already long playback url: " + isAlreadyLongPlaybackUrl);
+console.log("is original playback url: " + isOriginalPlaybackUrl);
 
-if (url && hasPlaybackSessionHeader && !isAlreadyLongPlaybackUrl && shouldNotifyPlayback(url)) {
+if (url && hasPlaybackSessionHeader && isOriginalPlaybackUrl && shouldNotifyPlayback(url)) {
   const originalM3u8Url = url;
   const longM3u8Url = originalM3u8Url.replace(/\/\/(?!long)[^.]+\./, "//long.");
   const longMp4Url = longM3u8Url.replace(/\.m3u8/i, ".mp4");
@@ -98,6 +107,8 @@ if (url && hasPlaybackSessionHeader && !isAlreadyLongPlaybackUrl && shouldNotify
   notify("CLSQ", "Open long m3u8", "Original: " + originalM3u8Url + "\nLong m3u8: " + longM3u8Url + "\nLong mp4: " + longMp4Url, playbackUrl);
 } else if (isAlreadyLongPlaybackUrl) {
   console.log("CLSQ playback notification skipped for long url");
+} else if (url && hasPlaybackSessionHeader && !isOriginalPlaybackUrl) {
+  console.log("CLSQ playback notification skipped for non-original playback url");
 }
 
 $done({ headers });
