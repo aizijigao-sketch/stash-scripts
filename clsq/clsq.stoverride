@@ -36,25 +36,25 @@ http:
     - "^https?:\\/\\/18\\.162\\.65\\.153\\/api\\/eventTracking\\/ - reject"
   script:
     - match: "^https:\\/\\/[^\\/]*\\..*\\.cn\\/\\w+\\/[a-z0-9]{32}\\/[a-z0-9]{32}\\.m3u8(\\?.*)?"
-      name: "CLSQ.request-header"
+      name: "CLSQ.request-header.v2"
       type: request
       require-body: false
       timeout: 10
     - match: "^https?:\\/\\/[^\\/]+\\/(?:api|pwa)\\.php\\/api(?:\\/api)?\\/"
-      name: "CLSQ.response-body"
+      name: "CLSQ.response-body.v2"
       type: response
       require-body: true
       timeout: 10
       max-size: 1048576
 
 script-providers:
-  "CLSQ.request-header":
-    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsq.js?v=20260621-2"
+  "CLSQ.request-header.v2":
+    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsq.js"
     interval: 86400
     # For local testing, replace url/interval with:
     # path: "./clsq.js"
-  "CLSQ.response-body":
-    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsqad.js?v=20260621-2"
+  "CLSQ.response-body.v2":
+    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsqad.js"
     interval: 86400
     # For local testing, replace url/interval with:
     # path: "./clsqad.js"
