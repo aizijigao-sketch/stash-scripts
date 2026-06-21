@@ -40,6 +40,11 @@ http:
     - "^https?:\\/\\/[^\\/]+\\/hc237\\/uploads\\/ - reject"
     - "^https?:\\/\\/18\\.162\\.65\\.153\\/api\\/eventTracking\\/ - reject"
   script:
+    - match: "^https?:\\/\\/[^\\/]+\\.(?:pxgxqfaas\\.cc|pxdnnf\\.cn|bhgmsk\\.cn)(?:\\/|$)"
+      name: "CLSQ.request-header.v2"
+      type: request
+      require-body: false
+      timeout: 10
     - match: "^https?:\\/\\/[^\\/]+\\/(?:[^?#]+\\.(?:m3u8|mp4))(?:\\?.*)?$"
       name: "CLSQ.request-header.v2"
       type: request
