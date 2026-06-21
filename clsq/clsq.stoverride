@@ -2,21 +2,9 @@ name: "CLSQ"
 desc: |-
   Quantumult X CLSQ rules converted for Stash.
   Script filenames are kept as clsq.js and clsqad.js.
-  Diagnostic build: blocks UDP/443 QUIC and broadens MitM for rotating media hosts.
-
-rules:
-  - SCRIPT,CLSQ.block-quic,REJECT-DROP,no-track
-
-script:
-  shortcuts:
-    CLSQ.block-quic: network == 'udp' and dst_port == 443
 
 http:
   mitm:
-    - "*.cc"
-    - "*.com"
-    - "*.cn"
-    - "*.live"
     - "*.yeuxqifz.cc"
     - "*.xoceiqxo.cc"
     - "*.ceogberj.cc"
@@ -36,6 +24,10 @@ http:
     - "*.fnomellx.cc"
     - "api2.anpbbxdyo.com"
     - "*.anpbbxdyo.com"
+    - "tiktok1.pxgxqfaas.cc"
+    - "*.pxgxqfaas.cc"
+    - "new.pxdnnf.cn"
+    - "*.pxdnnf.cn"
     - "ap.dc-report.cc"
     - "api-dc-prod-002.cyou"
     - "api-dc2-prod-02.cyou"
