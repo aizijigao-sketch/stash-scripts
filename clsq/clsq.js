@@ -3,8 +3,8 @@
  *
  * Purpose:
  * - Detect captured m3u8 requests that contain X-Playback-Session-Id.
- * - Build the long.* playback URL used by the original QX script.
- * - Send a notification with that URL.
+ * - Send a notification that opens the original m3u8 URL.
+ * - Log the original m3u8, long.* m3u8, and long.* mp4 candidates for diagnosis.
  * - Return request headers in Stash's expected shape.
  */
 
@@ -29,9 +29,15 @@ function notify(title, subtitle, body, playbackUrl) {
 }
 
 if (url && hasHeader(headers, "X-Playback-Session-Id")) {
-  const playbackUrl = url.replace(/\/\/(?!long)[^.]+\./, "//long.").replace(/\.m3u8/i, ".mp4");
+  const originalM3u8Url = url;
+  const longM3u8Url = originalM3u8Url.replace(/\/\/(?!long)[^.]+\./, "//long.");
+  const longMp4Url = longM3u8Url.replace(/\.m3u8/i, ".mp4");
+  const playbackUrl = originalM3u8Url;
   console.log("CLSQ playback URL captured");
-  notify("CLSQ", "Video link captured", playbackUrl, playbackUrl);
+  console.log("original m3u8: " + originalM3u8Url);
+  console.log("long m3u8: " + longM3u8Url);
+  console.log("long mp4: " + longMp4Url);
+  notify("CLSQ", "Open original m3u8", playbackUrl, playbackUrl);
 }
 
 $done({ headers });
