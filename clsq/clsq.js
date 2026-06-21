@@ -12,6 +12,7 @@ const req = typeof $request !== "undefined" ? $request : {};
 const headers = req.headers || {};
 const url = req.url || "";
 const hasPlaybackSessionHeader = hasHeader(headers, "X-Playback-Session-Id");
+const isAlreadyLongPlaybackUrl = /^https?:\/\/long\./i.test(url);
 
 function hasHeader(obj, name) {
   const target = name.toLowerCase();
@@ -32,8 +33,9 @@ function notify(title, subtitle, body, playbackUrl) {
 console.log("CLSQ request script executed");
 console.log("request url: " + url);
 console.log("has X-Playback-Session-Id: " + hasPlaybackSessionHeader);
+console.log("is already long playback url: " + isAlreadyLongPlaybackUrl);
 
-if (url && hasPlaybackSessionHeader) {
+if (url && hasPlaybackSessionHeader && !isAlreadyLongPlaybackUrl) {
   const originalM3u8Url = url;
   const longM3u8Url = originalM3u8Url.replace(/\/\/(?!long)[^.]+\./, "//long.");
   const longMp4Url = longM3u8Url.replace(/\.m3u8/i, ".mp4");
@@ -43,6 +45,8 @@ if (url && hasPlaybackSessionHeader) {
   console.log("long m3u8: " + longM3u8Url);
   console.log("long mp4: " + longMp4Url);
   notify("CLSQ", "Open long m3u8", "Original: " + originalM3u8Url + "\nLong m3u8: " + longM3u8Url + "\nLong mp4: " + longMp4Url, playbackUrl);
+} else if (isAlreadyLongPlaybackUrl) {
+  console.log("CLSQ playback notification skipped for long url");
 }
 
 $done({ headers });
