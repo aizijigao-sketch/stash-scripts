@@ -37,12 +37,12 @@ if (url && hasPlaybackSessionHeader) {
   const originalM3u8Url = url;
   const longM3u8Url = originalM3u8Url.replace(/\/\/(?!long)[^.]+\./, "//long.");
   const longMp4Url = longM3u8Url.replace(/\.m3u8/i, ".mp4");
-  const playbackUrl = originalM3u8Url;
+  const playbackUrl = longM3u8Url;
   console.log("CLSQ playback URL captured");
   console.log("original m3u8: " + originalM3u8Url);
   console.log("long m3u8: " + longM3u8Url);
   console.log("long mp4: " + longMp4Url);
-  notify("CLSQ", "Open original m3u8", playbackUrl, playbackUrl);
+  notify("CLSQ", "Open long m3u8", "Original: " + originalM3u8Url + "\nLong m3u8: " + longM3u8Url + "\nLong mp4: " + longMp4Url, playbackUrl);
 }
 
 $done({ headers });
