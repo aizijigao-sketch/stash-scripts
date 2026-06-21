@@ -58,8 +58,8 @@ http:
 
 script-providers:
   "CLSQ.request-header.v2":
-    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsq.js"
+    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/efb6c89/clsq/clsq.js"
     interval: 86400
   "CLSQ.response-body.v2":
-    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsqad.js"
+    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/efb6c89/clsq/clsqad.js"
     interval: 86400
