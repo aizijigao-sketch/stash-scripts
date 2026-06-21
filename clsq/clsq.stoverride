@@ -13,6 +13,7 @@ http:
     - "*.xmwemv.cn"
     - "120play.*.cn"
     - "long.*.cn"
+    - "*.bhgmsk.cn"
     - "*.wpyxbxt.cn"
     - "h5play.*.com"
     - "*.fipxor.cn"
@@ -35,7 +36,7 @@ http:
     - "^https?:\\/\\/[^\\/]+\\/hc237\\/uploads\\/ - reject"
     - "^https?:\\/\\/18\\.162\\.65\\.153\\/api\\/eventTracking\\/ - reject"
   script:
-    - match: "^https:\\/\\/[^\\/]*\\..*\\.cn\\/\\w+\\/[a-z0-9]{32}\\/[a-z0-9]{32}\\.m3u8(\\?.*)?"
+    - match: "^https?:\\/\\/[^\\/]+\\/(?:[^?#]+\\.(?:m3u8|mp4))(?:\\?.*)?$"
       name: "CLSQ.request-header.v2"
       type: request
       require-body: false
@@ -51,10 +52,6 @@ script-providers:
   "CLSQ.request-header.v2":
     url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsq.js"
     interval: 86400
-    # For local testing, replace url/interval with:
-    # path: "./clsq.js"
   "CLSQ.response-body.v2":
     url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsqad.js"
     interval: 86400
-    # For local testing, replace url/interval with:
-    # path: "./clsqad.js"
