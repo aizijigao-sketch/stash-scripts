@@ -11,6 +11,7 @@
 const req = typeof $request !== "undefined" ? $request : {};
 const headers = req.headers || {};
 const url = req.url || "";
+const hasPlaybackSessionHeader = hasHeader(headers, "X-Playback-Session-Id");
 
 function hasHeader(obj, name) {
   const target = name.toLowerCase();
@@ -28,7 +29,11 @@ function notify(title, subtitle, body, playbackUrl) {
   }
 }
 
-if (url && hasHeader(headers, "X-Playback-Session-Id")) {
+console.log("CLSQ request script executed");
+console.log("request url: " + url);
+console.log("has X-Playback-Session-Id: " + hasPlaybackSessionHeader);
+
+if (url && hasPlaybackSessionHeader) {
   const originalM3u8Url = url;
   const longM3u8Url = originalM3u8Url.replace(/\/\/(?!long)[^.]+\./, "//long.");
   const longMp4Url = longM3u8Url.replace(/\.m3u8/i, ".mp4");

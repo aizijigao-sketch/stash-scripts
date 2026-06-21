@@ -49,12 +49,12 @@ http:
 
 script-providers:
   "CLSQ.request-header":
-    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsq.js"
+    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsq.js?v=20260621-2"
     interval: 86400
     # For local testing, replace url/interval with:
     # path: "./clsq.js"
   "CLSQ.response-body":
-    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsqad.js"
+    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsqad.js?v=20260621-2"
     interval: 86400
     # For local testing, replace url/interval with:
     # path: "./clsqad.js"
