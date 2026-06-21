@@ -63,7 +63,7 @@ const GRID_ENTRY_RE =
 const EXTERNAL_URL_RE = /^https?:\/\//i;
 const DIVERSION_HOST_RE =
   /kvbxetxl\.com|x17sui|xmwemv\.cn\/upload\/ads\//i;
-const AD_API_PATH_RE = /\/(?:api|pwa)\.php\/api(?:\/api)?\//i;
+const AD_API_PATH_RE = /\/(?:api|pwa)\.php\/api(?:\/api)?(?:\/|$|\?)/i;
 const FEED_API_PATH_RE = /\/mv\/(?:discover2|list_construct)(?:\/|$|\?)/i;
 const HOME_CONFIG_PATH_RE = /\/home\/config(?:\/|$|\?)/i;
 
@@ -461,14 +461,20 @@ function processBody(body) {
 }
 
 var reqUrl = ($request && $request.url) || "";
-if (!AD_API_PATH_RE.test(reqUrl.split("?")[0])) {
+console.log("CLSQ response script executed");
+console.log("response url: " + reqUrl);
+if (!AD_API_PATH_RE.test(reqUrl)) {
+  console.log("CLSQ response skipped: URL did not match API pattern");
   $done();
 } else {
-  var body = $response.body;
+  var body = ($response && $response.body) || "";
+  console.log("response body length: " + body.length);
   var newBody = processBody(body);
   if (newBody) {
+    console.log("CLSQ response body modified");
     $done({ body: newBody, headers: $response.headers });
   } else {
+    console.log("CLSQ response body unchanged");
     $done();
   }
 }
