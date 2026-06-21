@@ -12,8 +12,15 @@ http:
       type: response
       require-body: true
       timeout: 30
+    - match: '^https?:\/\/.*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
+      name: haijiao-media-headers
+      type: response
+      timeout: 30
 
 script-providers:
   haijiao:
     url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/haijiao-stash.js
+    interval: 3600
+  haijiao-media-headers:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/haijiao-media-headers.js
     interval: 3600
