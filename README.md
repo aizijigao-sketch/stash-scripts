@@ -7,6 +7,9 @@ See `PROJECT.md` for the project authority file, Stash runtime policy, and editi
 ## Files
 
 - `scripts/haijiao-stash.js`: Haijiao Stash script copied from the current desktop version.
+- `clsq/clsq.stoverride`: CLSQ Stash override converted from the Quantumult X rules.
+- `clsq/clsq.js`: CLSQ request-header script for Stash.
+- `clsq/clsqad.js`: CLSQ response-body ad filtering script.
 - `tools/sync-to-desktop.ps1`: Copies the repository version back to the desktop path currently used by Stash.
 
 ## Stash Usage
@@ -30,6 +33,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\sync-to-desktop.ps1
 ```
 
 Private GitHub raw URLs normally require authentication and are not a good direct Stash script-provider URL. Keep the Stash-facing runtime file local unless the repository is intentionally made public or a separate authenticated delivery method is configured.
+
+CLSQ override raw URL:
+
+```text
+https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/clsq/clsq.stoverride
+```
 
 ## Security
 

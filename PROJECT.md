@@ -10,6 +10,14 @@ The current managed script is:
 F:\AI-Workspace\20_Projects\stash-scripts\scripts\haijiao-stash.js
 ```
 
+Additional converted Stash rule sets:
+
+```text
+F:\AI-Workspace\20_Projects\stash-scripts\clsq\clsq.stoverride
+F:\AI-Workspace\20_Projects\stash-scripts\clsq\clsq.js
+F:\AI-Workspace\20_Projects\stash-scripts\clsq\clsqad.js
+```
+
 ## GitHub Repository
 
 ```text
@@ -43,6 +51,7 @@ Do not rely on a private GitHub raw URL as a direct Stash script-provider URL. P
 ## Editing Rules
 
 - Edit `scripts\haijiao-stash.js` in this project first.
+- Keep converted rule sets in their own subdirectories, for example `clsq\`, so unrelated Stash rules do not mix.
 - Commit and push changes to the private GitHub repository.
 - Sync to the desktop runtime copy only if Stash still points there.
 - Do not commit cookies, tokens, credentials, private keys, `.env` files, logs, local Stash runtime secrets, or account-specific data.
