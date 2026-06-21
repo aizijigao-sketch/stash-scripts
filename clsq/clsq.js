@@ -14,7 +14,7 @@ const url = req.url || "";
 const hasPlaybackSessionHeader = hasHeader(headers, "X-Playback-Session-Id");
 const isAlreadyLongPlaybackUrl = /^https?:\/\/long\./i.test(url);
 const NOTIFY_CACHE_KEY = "CLSQ_NOTIFY_CACHE_V1";
-const NOTIFY_COOLDOWN_MS = 10 * 60 * 1000;
+const NOTIFY_COOLDOWN_MS = 60 * 1000;
 
 function hasHeader(obj, name) {
   const target = name.toLowerCase();
