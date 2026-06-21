@@ -63,7 +63,7 @@ http:
 
 script-providers:
   "CLSQ.request-header.v2":
-    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/a4f0161/clsq/clsq.js"
+    url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/ab6056a/clsq/clsq.js"
     interval: 86400
   "CLSQ.media-headers.v2":
     url: "https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/8bf857b/clsq/clsqmedia.js"
