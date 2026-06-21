@@ -13,6 +13,8 @@ const headers = req.headers || {};
 const url = req.url || "";
 const hasPlaybackSessionHeader = hasHeader(headers, "X-Playback-Session-Id");
 const isAlreadyLongPlaybackUrl = /^https?:\/\/long\./i.test(url);
+const NOTIFY_CACHE_KEY = "CLSQ_NOTIFY_CACHE_V1";
+const NOTIFY_COOLDOWN_MS = 10 * 60 * 1000;
 
 function hasHeader(obj, name) {
   const target = name.toLowerCase();
@@ -30,12 +32,61 @@ function notify(title, subtitle, body, playbackUrl) {
   }
 }
 
+function readStore(key) {
+  if (typeof $persistentStore !== "undefined" && typeof $persistentStore.read === "function") {
+    return $persistentStore.read(key);
+  }
+  return null;
+}
+
+function writeStore(value, key) {
+  if (typeof $persistentStore !== "undefined" && typeof $persistentStore.write === "function") {
+    return $persistentStore.write(value, key);
+  }
+  return false;
+}
+
+function playbackKey(rawUrl) {
+  const match = rawUrl.match(/^https?:\/\/[^/]+([^?#]+\.m3u8)(?:[?#]|$)/i);
+  return match ? match[1] : rawUrl.replace(/[?#].*$/, "");
+}
+
+function shouldNotifyPlayback(rawUrl) {
+  const now = Date.now();
+  const key = playbackKey(rawUrl);
+  let cache = {};
+  const cached = readStore(NOTIFY_CACHE_KEY);
+  if (cached) {
+    try {
+      cache = JSON.parse(cached) || {};
+    } catch (_) {
+      cache = {};
+    }
+  }
+
+  const lastNotifiedAt = Number(cache[key] || 0);
+  if (lastNotifiedAt && now - lastNotifiedAt < NOTIFY_COOLDOWN_MS) {
+    console.log("CLSQ playback notification skipped by cooldown: " + key);
+    return false;
+  }
+
+  cache[key] = now;
+  Object.keys(cache).forEach((item) => {
+    if (now - Number(cache[item] || 0) > NOTIFY_COOLDOWN_MS) {
+      delete cache[item];
+    }
+  });
+  writeStore(JSON.stringify(cache), NOTIFY_CACHE_KEY);
+  console.log("CLSQ playback notification allowed: " + key);
+  return true;
+}
+
 console.log("CLSQ request script executed");
 console.log("request url: " + url);
 console.log("has X-Playback-Session-Id: " + hasPlaybackSessionHeader);
 console.log("is already long playback url: " + isAlreadyLongPlaybackUrl);
 
-if (url && hasPlaybackSessionHeader && !isAlreadyLongPlaybackUrl) {
+if (url && hasPlaybackSessionHeader && !isAlreadyLongPlaybackUrl && shouldNotifyPlayback(url)) {
   const originalM3u8Url = url;
   const longM3u8Url = originalM3u8Url.replace(/\/\/(?!long)[^.]+\./, "//long.");
   const longMp4Url = longM3u8Url.replace(/\.m3u8/i, ".mp4");
