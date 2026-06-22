@@ -46,11 +46,6 @@ http:
       type: response
       require-body: true
       timeout: 30
-    - match: '^https?:\/\/[^\/]+\/(?!(?:[^?#]*\.(?:png|jpe?g|webp|gif|svg|ico|m3u8|mp4|ts)(?:[?#]|$)|.*(?:crypt|enc)\.key(?:[?#]|$))).*'
-      name: 91ad.js
-      type: response
-      require-body: true
-      timeout: 30
     - match: '^https?:\/\/.*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
       name: 91media.js
       type: response
