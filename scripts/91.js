@@ -1,4 +1,4 @@
-// 91 video capture for Stash. Adds original-site headers and opens captured links through the SSM player.
+// 91 video capture for Stash. Adds original-site headers and opens captured links directly.
 (function () {
   const url = ($request && $request.url) || "";
   const headers = Object.assign({}, ($request && $request.headers) || {});

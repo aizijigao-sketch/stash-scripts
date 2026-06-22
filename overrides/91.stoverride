@@ -54,25 +54,25 @@ http:
       type: response
       require-body: true
       timeout: 30
-    - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/(?:watch|videos)[^?#]*(?:\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
+    - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/.*(?:\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
       name: 91media-request.js
       type: request
       timeout: 30
-    - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/(?:watch|videos)[^?#]*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
+    - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/.*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
       name: 91media.js
       type: response
       timeout: 30
 
 script-providers:
   91.js:
-    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91.js
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91.js?v=20260623073251
     interval: 3600
   91ad.js:
-    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91ad.js
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91ad.js?v=20260623073251
     interval: 3600
   91media-request.js:
-    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91media-request.js
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91media-request.js?v=20260623073251
     interval: 3600
   91media.js:
-    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91media.js
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91media.js?v=20260623073251
     interval: 3600
