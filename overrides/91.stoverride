@@ -1,0 +1,68 @@
+name: 91
+desc: Auto-generated Stash override for 91
+# 特别说明：必须开启HTTP抓包，并且关闭其他脚本
+# 特别说明：捕获成功后，点击通知即可观看
+
+http:
+  mitm:
+    - 'api.axhwcxup.cc'
+    - '*.axhwcxup.cc'
+    - 'line.axhwcxup.cc'
+    - 'line.jqeecefr.org'
+    - '*.jqeecefr.org'
+    - 'line.emzjnoho.xyz'
+    - '*.emzjnoho.xyz'
+    - 'new.ywbvrkwk.cn'
+    - '*.ywbvrkwk.cn'
+    - 'yypwa4.aybvvkglr.com'
+    - '*.aybvvkglr.com'
+    - 'ap.dc-report.cc'
+    - '120play.*.cn'
+    - 'tp5.iajckz.cn'
+    - 'h5play.*.com'
+    - 'long.*.cn'
+    - '*.fipxor.cn'
+    - 'p4.aozngkwm.com'
+    - '*.aozngkwm.com'
+    - 'api2.fnomellx.cc'
+    - '*.fnomellx.cc'
+    - 'api2.anpbbxdyo.com'
+    - '*.anpbbxdyo.com'
+    - 'yypwa1.aybvvkglr.com'
+
+  url-rewrite:
+    - '^https?:\/\/[^\/]+\/upload_01\/ads\/ - reject'
+    - '^https?:\/\/ap\.dc-report\.cc\/ - reject'
+    - '^https?:\/\/api-dc-prod-002\.cyou\/ - reject'
+    - '^https?:\/\/api-dc2-prod-02\.cyou\/ - reject'
+
+  script:
+    - match: '^https?:\/\/[^\/]+\/(?:[^?#]+\.(?:m3u8|mp4))(?:\?.*)?$'
+      name: 91.js
+      type: request
+      timeout: 30
+    - match: '^https?:\/\/(?:api[0-9]*|line)\.[^\/]+\/api\/'
+      name: 91ad.js
+      type: response
+      require-body: true
+      timeout: 30
+    - match: '^https?:\/\/[^\/]+\/(?!(?:[^?#]*\.(?:png|jpe?g|webp|gif|svg|ico|m3u8|mp4|ts)(?:[?#]|$)|.*(?:crypt|enc)\.key(?:[?#]|$))).*'
+      name: 91ad.js
+      type: response
+      require-body: true
+      timeout: 30
+    - match: '^https?:\/\/.*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
+      name: 91media.js
+      type: response
+      timeout: 30
+
+script-providers:
+  91.js:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91.js
+    interval: 3600
+  91ad.js:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91ad.js
+    interval: 3600
+  91media.js:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91media.js
+    interval: 3600
