@@ -41,7 +41,6 @@
     }
   } catch (_) {}
 
-  const openUrl = "https://stash-manager.410079116.xyz/player?url=" + encodeURIComponent(url);
-  $notification.post("91 视频链接捕获成功", "点击打开播放页", "", { url: openUrl });
+  $notification.post("91 视频链接捕获成功", "点击直接打开源链接", "", { url });
   return $done({ headers });
 })();
