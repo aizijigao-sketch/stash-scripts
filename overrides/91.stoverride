@@ -45,7 +45,7 @@ http:
     - '^https?:\/\/api-dc2-prod-02\.cyou\/ - reject'
 
   script:
-    - match: '^https?:\/\/[^\/]+\/(?:[^?#]+\.(?:m3u8|mp4))(?:\?.*)?$'
+    - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/(?:watch|videos)[^?#]*\.(?:m3u8|mp4)(?:\?.*)?$'
       name: 91.js
       type: request
       timeout: 30
@@ -54,7 +54,7 @@ http:
       type: response
       require-body: true
       timeout: 30
-    - match: '^https?:\/\/.*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
+    - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/(?:watch|videos)[^?#]*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
       name: 91media.js
       type: response
       timeout: 30
