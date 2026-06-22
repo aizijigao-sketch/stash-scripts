@@ -49,6 +49,10 @@ http:
       name: 91.js
       type: request
       timeout: 30
+    - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/(?:watch|videos)[^?#]*(?:\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
+      name: 91media-request.js
+      type: request
+      timeout: 30
     - match: '^https?:\/\/[^\/]*\.(?:ofpcif\.cn|hoicmy\.cn|ywbvrkwk\.cn|aybvvkglr\.com|fipxor\.cn|aozngkwm\.com|fnomellx\.cc|anpbbxdyo\.com)\/(?:watch|videos)[^?#]*(?:\.m3u8|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
       name: 91media.js
       type: response
@@ -57,6 +61,9 @@ http:
 script-providers:
   91.js:
     url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91.js
+    interval: 3600
+  91media-request.js:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91media-request.js
     interval: 3600
   91media.js:
     url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91media.js
