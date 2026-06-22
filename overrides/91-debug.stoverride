@@ -1,0 +1,51 @@
+name: 91-debug
+desc: 临时测试：抓取 91 请求/响应/媒体命中日志，确认 Stash 是否接住流量
+# 仅用于排障：MITM 范围比正式规则宽，测试完成后请停用。
+
+http:
+  mitm:
+    - '*.axhwcxup.cc'
+    - '*.jqeecefr.org'
+    - '*.emzjnoho.xyz'
+    - '*.ywbvrkwk.cn'
+    - '*.aybvvkglr.com'
+    - '*.dc-report.cc'
+    - '*.cyou'
+    - '*.iajckz.cn'
+    - '*.fipxor.cn'
+    - '*.aozngkwm.com'
+    - '*.fnomellx.cc'
+    - '*.anpbbxdyo.com'
+    - '*.com'
+    - '*.cn'
+    - '*.cc'
+    - '*.org'
+    - '*.xyz'
+    - '*.live'
+    - '*.co'
+
+  script:
+    - match: '^https?:\/\/.*'
+      name: 91-debug-probe.js
+      type: request
+      timeout: 30
+    - match: '^https?:\/\/.*(?:api|line|config|home|video|play|ads|advertise|popup|banner).*'
+      name: 91-debug-response.js
+      type: response
+      require-body: true
+      timeout: 30
+    - match: '^https?:\/\/.*(?:\.m3u8|\.mp4|\.ts|(?:crypt|enc)\.key)(?:\?.*)?$'
+      name: 91-debug-media.js
+      type: response
+      timeout: 30
+
+script-providers:
+  91-debug-probe.js:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91-debug-probe.js
+    interval: 60
+  91-debug-response.js:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91-debug-response.js
+    interval: 60
+  91-debug-media.js:
+    url: https://raw.githubusercontent.com/aizijigao-sketch/stash-scripts/master/scripts/91-debug-media.js
+    interval: 60
